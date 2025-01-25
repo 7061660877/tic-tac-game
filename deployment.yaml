@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tic-tac-toe-deployment
+  labels:
+    app: tic-tac-toe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tic-tac-toe
+  template:
+    metadata:
+      labels:
+        app: tic-tac-toe
+    spec:
+      containers:
+      - name: tic-tac-toe
+        image: 2024dock/tic-tac-toe:v1.0  # Replace with your Docker image tag
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
